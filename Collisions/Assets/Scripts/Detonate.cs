@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DetonateSkill : MonoBehaviour
+public class Detonate : MonoBehaviour
 {
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
 
-    public void Detonate()
+    public void Explode()
     {
         foreach (Rigidbody explodableObjects in GetExplodableObjects())
         {

@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private SplitSkill _splitter;
-    [SerializeField] private DetonateSkill _detonator;
+    [SerializeField] private Split _splitter;
+    [SerializeField] private Detonate _detonator;
 
     private void OnMouseUpAsButton()
     {
-        _splitter.Split();
-        _detonator.Detonate();
+        _splitter.Multiply();
+        _detonator.Explode();
         Destroy(gameObject);
     }
 }
