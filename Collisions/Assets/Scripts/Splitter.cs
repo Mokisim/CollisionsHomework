@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 
-public class Split : MonoBehaviour
+public class Splitter : MonoBehaviour
 {
-    public event Action<float> CubeNotSplitted;
+    public event Action<float> SplitFailed;
 
     [SerializeField] private Cube _cubePrefab;
 
@@ -27,15 +27,15 @@ public class Split : MonoBehaviour
             for (int i = 0; i < cubesCount; i++)
             {
                 Cube cube = Instantiate(_cubePrefab, transform.position, Quaternion.identity);
-                cube.GetComponent<Split>()._splitChance = cubeSplitChance / 2;
+                cube.GetComponent<Splitter>()._splitChance = cubeSplitChance / 2;
                 cube.transform.localScale = cubePrefabScale / 2;
                 cubePrefabScale = cube.transform.localScale;
-                cubeSplitChance = cube.GetComponent<Split>()._splitChance;
+                cubeSplitChance = cube.GetComponent<Splitter>()._splitChance;
             }
         }
         else
         {
-            CubeNotSplitted.Invoke(_cubePrefab.transform.localScale.magnitude);
+            SplitFailed.Invoke(_cubePrefab.transform.localScale.magnitude);
         }
     }
 }

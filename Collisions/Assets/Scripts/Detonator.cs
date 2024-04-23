@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Detonate : MonoBehaviour
+public class Detonator : MonoBehaviour
 {
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
-    [SerializeField] private Split _split;
+    [SerializeField] private Splitter _split;
 
     private void OnEnable()
     {
-        _split.CubeNotSplitted += Explode;
+        _split.SplitFailed += Explode;
     }
 
     private void OnDisable()
     {
-        _split.CubeNotSplitted -= Explode;
+        _split.SplitFailed -= Explode;
     }
 
     private void Explode(float explosionMultiplier)
