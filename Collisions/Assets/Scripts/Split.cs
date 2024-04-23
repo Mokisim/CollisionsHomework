@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Split : MonoBehaviour
 {
+    public event Action<float> CubeNotSplitted;
+
     [SerializeField] private Cube _cubePrefab;
 
     private int _minCubesCount = 1;
@@ -15,14 +16,14 @@ public class Split : MonoBehaviour
         float randomMin = 0;
         float randomMax = 101;
 
-        float chance = Random.Range(randomMin, randomMax);
+        float chance = UnityEngine.Random.Range(randomMin, randomMax);
 
         if (chance < _splitChance)
         {
-            int cubesCount = Random.Range(_minCubesCount, _maxCubesCount);
+            int cubesCount = UnityEngine.Random.Range(_minCubesCount, _maxCubesCount);
             Vector3 cubePrefabScale = _cubePrefab.transform.localScale;
             float cubeSplitChance = _splitChance;
-
+            
             for (int i = 0; i < cubesCount; i++)
             {
                 Cube cube = Instantiate(_cubePrefab, transform.position, Quaternion.identity);
@@ -31,6 +32,10 @@ public class Split : MonoBehaviour
                 cubePrefabScale = cube.transform.localScale;
                 cubeSplitChance = cube.GetComponent<Split>()._splitChance;
             }
+        }
+        else
+        {
+            CubeNotSplitted.Invoke(_cubePrefab.transform.localScale.magnitude);
         }
     }
 }

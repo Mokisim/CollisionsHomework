@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _splitter: {fileID: 4181651067496308581}
-  _detonator: {fileID: 8489777087803608132}
 --- !u!114 &8489777087803608132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionRadius: 100
   _explosionForce: 100
+  _split: {fileID: 4181651067496308581}
 --- !u!114 &4181651067496308581
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,12 +6,23 @@ public class Detonate : MonoBehaviour
 {
     [SerializeField] private float _explosionRadius;
     [SerializeField] private float _explosionForce;
+    [SerializeField] private Split _split;
 
-    public void Explode()
+    private void OnEnable()
+    {
+        _split.CubeNotSplitted += Explode;
+    }
+
+    private void OnDisable()
+    {
+        _split.CubeNotSplitted -= Explode;
+    }
+
+    private void Explode(float explosionMultiplier)
     {
         foreach (Rigidbody explodableObjects in GetExplodableObjects())
         {
-            explodableObjects.AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
+            explodableObjects.AddExplosionForce(_explosionForce/explosionMultiplier, transform.position, _explosionRadius/explosionMultiplier);
         }
     }
 
