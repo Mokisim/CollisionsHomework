@@ -10,6 +10,8 @@ public class Splitter : MonoBehaviour
     private int _minCubesCount = 1;
     private int _maxCubesCount = 7;
     private float _splitChance = 100;
+    private int _chanceDecrease = 2;
+    private int _scaleDecrease = 2;
 
     public void Multiply()
     {
@@ -27,8 +29,8 @@ public class Splitter : MonoBehaviour
             for (int i = 0; i < cubesCount; i++)
             {
                 Cube cube = Instantiate(_cubePrefab, transform.position, Quaternion.identity);
-                cube.GetComponent<Splitter>()._splitChance = cubeSplitChance / 2;
-                cube.transform.localScale = cubePrefabScale / 2;
+                cube.GetComponent<Splitter>()._splitChance = cubeSplitChance / _chanceDecrease;
+                cube.transform.localScale = cubePrefabScale / _scaleDecrease;
                 cubePrefabScale = cube.transform.localScale;
                 cubeSplitChance = cube.GetComponent<Splitter>()._splitChance;
             }
